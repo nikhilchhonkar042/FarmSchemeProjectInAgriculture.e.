@@ -4,6 +4,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.entities.*;
+import com.entities.farmer.FarmerDAO;
+import com.entities.farmer.FarmerDAOImplementation;
+import com.entities.farmer.FarmerEntity;
+
 import Validators.AllValidators;
 
 import javax.swing.JLabel;
@@ -15,6 +20,7 @@ import javax.swing.JFileChooser;
 import java.awt.Color;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -39,6 +45,8 @@ public class FarmerRegistrationPage extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		String str1;
+		String str2;
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -55,6 +63,7 @@ public class FarmerRegistrationPage extends JFrame {
 	 * Create the frame.
 	 */
 	public FarmerRegistrationPage() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1351, 769);
 		contentPane = new JPanel();
@@ -213,6 +222,92 @@ public class FarmerRegistrationPage extends JFrame {
 		panel.add(lblNewLabel_1_3_1_2_2_2);
 		
 		
+		JButton btnNewButton_1 = new JButton("Choose File");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser filechooser=new JFileChooser();
+				int num=filechooser.showSaveDialog(null);
+				String nameOfFile = null;
+				 if (num == JFileChooser.APPROVE_OPTION) {
+					 File file=filechooser.getSelectedFile();
+					 nameOfFile=file.getName();
+				 }
+				 btnNewButton_1.setText(nameOfFile);
+				
+			}
+		});
+		btnNewButton_1.setBackground(new Color(255, 255, 255));
+		btnNewButton_1.setBounds(651, 494, 265, 21);
+		panel.add(btnNewButton_1);
+		
+		JButton btnNewButton_1_1 = new JButton("Choose File");
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser filechooser=new JFileChooser();
+				int num=filechooser.showSaveDialog(null);
+				String nameOfFile = null;
+				 if (num == JFileChooser.APPROVE_OPTION) {
+					 File file=filechooser.getSelectedFile();
+					 nameOfFile=file.getName();
+				 }
+				
+				btnNewButton_1_1.setText(nameOfFile);
+			}
+		});
+		btnNewButton_1_1.setBackground(Color.WHITE);
+		btnNewButton_1_1.setBounds(651, 528, 265, 21);
+		panel.add(btnNewButton_1_1);
+		
+		
+		JButton btnReset = new JButton("Reset");
+		btnReset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fullNameTextField.setText("");
+				contactNoTextField.setText("");
+				emailIdTextField.setText("");
+				textField_3.setText("");
+				textField_4.setText("");
+				textField_5.setText("");
+				textField_6.setText("");
+				textField_7.setText("");
+				textField_8.setText("");
+				btnNewButton_1.setText("");
+				btnNewButton_1_1.setText("");
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			}
+		});
+		btnReset.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnReset.setBackground(new Color(255, 0, 0));
+		btnReset.setBounds(743, 641, 112, 36);
+		panel.add(btnReset);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(651, 561, 265, 20);
+		panel.add(passwordField);
+		
+		passwordField_1 = new JPasswordField();
+		passwordField_1.setBounds(651, 591, 265, 20);
+		panel.add(passwordField_1);
+		
+		
+		
+		
+		
+		
 		//for valid name
 		JLabel ErrNameMsg = new JLabel("Enter Valid Name");
 		ErrNameMsg.setForeground(new Color(255, 0, 0));
@@ -288,9 +383,12 @@ public class FarmerRegistrationPage extends JFrame {
 					lblNewLabel_3.setVisible(false);
 				}
 				
+				FarmerDAO farmerDAOObject=new FarmerDAOImplementation();
 				
-				
-				
+			    FarmerEntity farmerEntityObj=new FarmerEntity(fullNameTextField.getText(),contactNoTextField.getText() , emailIdTextField.getText(), textField_3.getText(), textField_4.getText(), textField_5.getText(), textField_6.getText(), textField_7.getText(), textField_8.getText(), btnNewButton_1.getText(), btnNewButton_1_1.getText(),passwordField.getText());
+//				
+//				
+				farmerDAOObject.insertFarmer(farmerEntityObj);
 				
 				
 				
@@ -312,43 +410,6 @@ public class FarmerRegistrationPage extends JFrame {
 		btnNewButton.setBounds(439, 641, 112, 36);
 		panel.add(btnNewButton);
 		
-		JButton btnReset = new JButton("Reset");
-		btnReset.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnReset.setBackground(new Color(255, 0, 0));
-		btnReset.setBounds(743, 641, 112, 36);
-		panel.add(btnReset);
-		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(651, 561, 265, 20);
-		panel.add(passwordField);
-		
-		passwordField_1 = new JPasswordField();
-		passwordField_1.setBounds(651, 591, 265, 20);
-		panel.add(passwordField_1);
-		
-		JButton btnNewButton_1 = new JButton("Choose File");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JFileChooser filechooser=new JFileChooser();
-				filechooser.showSaveDialog(null);
-				btnNewButton_1.setText(filechooser.getSelectedFile().getName());
-			}
-		});
-		btnNewButton_1.setBackground(new Color(255, 255, 255));
-		btnNewButton_1.setBounds(651, 494, 265, 21);
-		panel.add(btnNewButton_1);
-		
-		JButton btnNewButton_1_1 = new JButton("Choose File");
-		btnNewButton_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JFileChooser filechooser=new JFileChooser();
-				filechooser.showSaveDialog(null);
-				btnNewButton_1_1.setText(filechooser.getSelectedFile().getName());
-			}
-		});
-		btnNewButton_1_1.setBackground(Color.WHITE);
-		btnNewButton_1_1.setBounds(651, 528, 265, 21);
-		panel.add(btnNewButton_1_1);
 		
 	
 		

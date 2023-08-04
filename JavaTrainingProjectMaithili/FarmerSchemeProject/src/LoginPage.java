@@ -10,11 +10,13 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.awt.event.ActionEvent;
 
 import Validators.*;
 
-public class LoginPage extends JFrame {
+public class LoginPage extends JFrame implements WindowListener {
 
 	private JPanel contentPane;
 	private JTextField textFieldForEmail;
@@ -23,24 +25,31 @@ public class LoginPage extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LoginPage frame = new LoginPage();
-					frame.setVisible(true);
+					//HomePage home;
+					//LoginPage frame = new LoginPage(home);
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
 	 */
+	HomePage home;
+	
+	
+	
 	public LoginPage() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+//		this.addWindowListener(this);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1229, 692);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -50,7 +59,7 @@ public class LoginPage extends JFrame {
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 248, 220));
-		panel.setBounds(10, 10, 1205, 635);
+		panel.setBounds(10, 18, 1205, 635);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -98,13 +107,13 @@ public class LoginPage extends JFrame {
 					ErrMsgForEmail.setVisible(true);
 					textFieldForEmail.setText("");
 				}
-				
-				if (textFieldForEmail.getText().equals("adminlog@gmail.com") && passwordField.getText().equals("admin@123")  ) {
+
+				if (textFieldForEmail.getText().equals("adminlog@gmail.com")
+						&& passwordField.getText().equals("admin@123")) {
 //				System.out.println(textFieldForEmail.getText());
-					AdminPage adminPage=new AdminPage();
+					AdminPage adminPage = new AdminPage();
 					adminPage.setVisible(true);
 				}
-				
 
 			}
 		});
@@ -122,7 +131,7 @@ public class LoginPage extends JFrame {
 		lblNewLabel_3.setBounds(412, 429, 138, 21);
 		panel.add(lblNewLabel_3);
 
-		JButton btnNewButton_1 = new JButton("Register");
+		JButton btnNewButton_1 = new JButton("Farmer");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -159,6 +168,102 @@ public class LoginPage extends JFrame {
 		JButton btnNewButton_2 = new JButton("Forgot Password");
 		btnNewButton_2.setBounds(543, 388, 175, 21);
 		panel.add(btnNewButton_2);
+		
+		JLabel lblNewLabel_3_3 = new JLabel("New User? Are you a");
+		lblNewLabel_3_3.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel_3_3.setBounds(412, 493, 138, 21);
+		panel.add(lblNewLabel_3_3);
+		
+		JButton btnNewButton_1_2 = new JButton("Farmer");
+		btnNewButton_1_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FarmerLoginPage farmerLoginPage=new FarmerLoginPage();
+				farmerLoginPage.setVisible(true);
+			}
+		});
+		btnNewButton_1_2.setFont(new Font("Tahoma", Font.BOLD, 10));
+		btnNewButton_1_2.setBounds(543, 493, 85, 21);
+		panel.add(btnNewButton_1_2);
+		
+		JLabel lblNewLabel_3_1_1 = new JLabel("or");
+		lblNewLabel_3_1_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel_3_1_1.setBounds(638, 493, 20, 21);
+		panel.add(lblNewLabel_3_1_1);
+		
+		JButton btnNewButton_1_1_1 = new JButton("Bidder");
+		btnNewButton_1_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BidderLoginPage bidderLoginPage=new BidderLoginPage();
+				bidderLoginPage.setVisible(true);
+			}
+		});
+		btnNewButton_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 10));
+		btnNewButton_1_1_1.setBounds(668, 492, 85, 21);
+		panel.add(btnNewButton_1_1_1);
+		
+		JLabel lblNewLabel_3_2_1 = new JLabel("Login Here");
+		lblNewLabel_3_2_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel_3_2_1.setBounds(763, 493, 138, 21);
+		panel.add(lblNewLabel_3_2_1);
 
+	}
+
+
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println("login window closing");
+
+//		this.setVisible(false);
+	}
+
+
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+//		// TODO Auto-generated method stub
+//		System.out.println("login window closed");
+//		this.setVisible(false);
+	}
+
+
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
